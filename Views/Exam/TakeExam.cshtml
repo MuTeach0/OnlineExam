@@ -1,0 +1,150 @@
+﻿@model OnlineExam.ViewModels.TakeExamViewModel
+@{
+    ViewData["Title"] = "Take Exam: " + Model.ExamTitle;
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h3 class="mb-0">@Model.ExamTitle</h3>
+                        <div class="text-end">
+                            <div class="h5 mb-0" id="timer">@Model.DurationMinutes:00</div>
+                            <small>Time Remaining</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <p class="text-muted">@Model.ExamDescription</p>
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i>
+                            <strong>Instructions:</strong> Answer all questions. Each question has only one correct answer.
+                            You cannot go back to previous questions once you submit.
+                        </div>
+                    </div>
+
+                    <form id="examForm" asp-action="SubmitExam" method="post">
+                        <input type="hidden" name="examId" value="@Model.ExamId" />
+
+                        @for (int i = 0; i < Model.Questions.Count; i++)
+                        {
+                            var question = Model.Questions[i];
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Question @(i + 1) of @Model.Questions.Count</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="h6 mb-3">@question.Title</p>
+
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio"
+                                               name="answers[@i]" value="A" id="q@(i)_a" required />
+                                        <label class="form-check-label" for="q@(i)_a">
+                                            <strong>A:</strong> @question.ChoiceA
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio"
+                                               name="answers[@i]" value="B" id="q@(i)_b" required />
+                                        <label class="form-check-label" for="q@(i)_b">
+                                            <strong>B:</strong> @question.ChoiceB
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio"
+                                               name="answers[@i]" value="C" id="q@(i)_c" required />
+                                        <label class="form-check-label" for="q@(i)_c">
+                                            <strong>C:</strong> @question.ChoiceC
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio"
+                                               name="answers[@i]" value="D" id="q@(i)_d" required />
+                                        <label class="form-check-label" for="q@(i)_d">
+                                            <strong>D:</strong> @question.ChoiceD
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success btn-lg" id="submitBtn">
+                                <i class="fas fa-paper-plane"></i> Submit Exam
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+    <script>
+        // Timer functionality
+        let timeLeft = @Model.DurationMinutes * 60; // Convert to seconds
+        const timerDisplay = document.getElementById('timer');
+        const submitBtn = document.getElementById('submitBtn');
+        const examForm = document.getElementById('examForm');
+
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+            if (timeLeft <= 0) {
+                // Time's up, auto-submit
+                alert('Time is up! Your exam will be submitted automatically.');
+                examForm.submit();
+                return;
+            }
+
+            timeLeft--;
+        }
+
+        // Update timer every second
+        const timerInterval = setInterval(updateTimer, 1000);
+
+        // Form validation
+        examForm.addEventListener('submit', function(e) {
+            const questions = @Model.Questions.Count;
+            let answered = 0;
+
+            for (let i = 0; i < questions; i++) {
+                const answers = document.querySelectorAll(`input[name="answers[${i}]"]:checked`);
+                if (answers.length > 0) {
+                    answered++;
+                }
+            }
+
+            if (answered < questions) {
+                e.preventDefault();
+                if (confirm(`You have answered ${answered} out of ${questions} questions. Are you sure you want to submit?`)) {
+                    clearInterval(timerInterval);
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+                }
+            } else {
+                clearInterval(timerInterval);
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+            }
+        });
+
+        // Prevent form submission on Enter key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+            }
+        });
+    </script>
+}

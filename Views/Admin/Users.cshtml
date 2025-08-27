@@ -1,0 +1,101 @@
+﻿@model List<OnlineExam.Models.Users>
+@{
+    ViewData["Title"] = "Manage Users";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1>Manage Users</h1>
+                <a href="@Url.Action("CreateUser", "Admin")" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Add New User
+                </a>
+            </div>
+        </div>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Full Name</th>
+                                        <th>Email</th>
+                                        <th>Email Confirmed</th>
+                                        <th>Exam Results</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var user in Model)
+                                    {
+                                        <tr>
+                                            <td>@user.FullName</td>
+                                            <td>@user.Email</td>
+                                            <td>
+                                                @if (user.EmailConfirmed)
+                                                {
+                                                    <span class="badge bg-success">Confirmed</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-warning">Pending</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-info">@user.ExamResults.Count results</span>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    @* <a href="#" class="btn btn-sm btn-outline-info"
+                                                       onclick="alert('User management features can be extended here')">
+                                                        <i class="bi bi-card-checklist"></i>  <!-- manage questions -->
+                                                    </a> *@
+                                                    <a href="@Url.Action("EditUser", "Admin", new { id = user.Id })"
+                                                       class="btn btn-sm btn-outline-info">
+                                                        <i class="bi bi-pencil-square"></i> Edit
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-info text-center">
+                    <i class="fas fa-info-circle fa-2x mb-3"></i>
+                    <h4>No Users Found</h4>
+                    <p>No users have been created yet. Click the "Add New User" button to get started.</p>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <a href="@Url.Action("Index", "Admin")" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Admin Panel
+            </a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+}

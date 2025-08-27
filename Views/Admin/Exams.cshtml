@@ -1,0 +1,110 @@
+﻿@model List<OnlineExam.Models.Exam>
+@{
+    ViewData["Title"] = "Manage Exams";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1>Manage Exams</h1>
+                <a href="@Url.Action("CreateExam", "Admin")" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Create New Exam
+                </a>
+            </div>
+        </div>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Duration</th>
+                                        <th>Questions</th>
+                                        <th>Status</th>
+                                        <th>Created</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var exam in Model)
+                                    {
+                                        <tr>
+                                            <td>@exam.Title</td>
+                                            <td>@(exam.Description?.Length > 50 ? exam.Description.Substring(0, 50) + "..." : exam.Description)</td>
+                                            <td>@exam.DurationMinutes minutes</td>
+                                            <td>@exam.Questions.Count</td>
+                                            <td>
+                                                @if (exam.IsActive)
+                                                {
+                                                    <span class="badge bg-success">Active</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-secondary">Inactive</span>
+                                                }
+                                            </td>
+                                            <td>@exam.CreatedAt.ToString("MMM dd, yyyy")</td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <a href="@Url.Action("EditExam", "Admin", new { id = exam.Id })"
+                                                       class="btn btn-sm btn-outline-primary" title="Edit Exam">
+                                                        <i class="bi bi-pencil-square"></i>   <!-- edit -->
+                                                    </a>
+                                                    <a href="@Url.Action("Questions", "Admin")"
+                                                       class="btn btn-sm btn-outline-info" title="Manage Questions">
+                                                        <i class="bi bi-card-checklist"></i>  <!-- manage questions -->
+                                                    </a>
+                                                    <form asp-action="DeleteExam" asp-route-id="@exam.Id"
+                                                          method="post" style="display: inline;"
+                                                          onsubmit="return confirm('Are you sure you want to delete this exam?');">
+                                                        <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete Exam">
+                                                            <i class="bi bi-trash"></i>           <!-- delete -->
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-info text-center">
+                    <i class="fas fa-info-circle fa-2x mb-3"></i>
+                    <h4>No Exams Found</h4>
+                    <p>You haven't created any exams yet. Click the "Create New Exam" button to get started.</p>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <a href="@Url.Action("Index", "Admin")" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Admin Panel
+            </a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+}

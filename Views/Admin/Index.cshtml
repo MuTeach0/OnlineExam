@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Admin Panel";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center mb-4">Admin Panel</h1>
+            <p class="text-center text-muted">Welcome to the Online Exam System Administration Panel</p>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-file-alt fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Manage Exams</h5>
+                    <p class="card-text">Create, edit, and delete exams. Set duration and manage exam settings.</p>
+                    <a href="@Url.Action("Exams", "Admin")" class="btn btn-primary">Manage Exams</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-question-circle fa-3x text-success mb-3"></i>
+                    <h5 class="card-title">Manage Questions</h5>
+                    <p class="card-text">Add, edit, and delete questions for each exam. Set correct answers.</p>
+                    <a href="@Url.Action("Questions", "Admin")" class="btn btn-success">Manage Questions</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-users fa-3x text-info mb-3"></i>
+                    <h5 class="card-title">Manage Users</h5>
+                    <p class="card-text">Add new users manually and view existing user information.</p>
+                    <a href="@Url.Action("Users", "Admin")" class="btn btn-info">Manage Users</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <a href="@Url.Action("Index", "Home")" class="btn btn-secondary">
+                <i class="fas fa-home"></i> Back to Home
+            </a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+}

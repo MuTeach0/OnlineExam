@@ -1,0 +1,79 @@
+﻿@model OnlineExam.ViewModels.EditUserViewModel
+@{
+    ViewData["Title"] = "Edit User";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2>Edit User</h2>
+                    <hr />
+
+                    <form asp-action="EditUser" method="post">
+                        <input type="hidden" asp-for="Id" />
+
+                        <!-- Basic Info -->
+                        <div class="mb-3">
+                            <label asp-for="FullName" class="form-label"></label>
+                            <input asp-for="FullName" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label"></label>
+                            <input asp-for="Email" class="form-control" />
+                        </div>
+                        <div class="form-check mb-3">
+                            <input asp-for="EmailConfirmed" class="form-check-input" />
+                            <label asp-for="EmailConfirmed" class="form-check-label"></label>
+                        </div>
+
+                        <h5>Available Exams</h5>
+                        @foreach (var exam in Model.AvailableExams)
+                        {
+                            <div class="form-check">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       name="SelectedAvailableExamIds"
+                                       value="@exam.ExamId"
+                                       @(exam.IsSelected ? "checked" : "") />
+                                <label class="form-check-label">@exam.Title</label>
+                            </div>
+                        }
+
+                        <h5 class="mt-4">Solved Exams</h5>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Exam</th>
+                                    <th>Score</th>
+                                    <th>Passed</th>
+                                    <th>Completed At</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var exam in Model.SolvedExams)
+                                {
+                                    <tr>
+                                        <td>@exam.Title</td>
+                                        <td>@exam.Score %</td>
+                                        <td>@(exam.IsPassed ? "Yes" : "No")</td>
+                                        <td>@exam.CompletedAt.ToString("g")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                        <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
