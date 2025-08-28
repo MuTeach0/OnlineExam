@@ -53,32 +53,32 @@ public class SeedService
 
             }
             // Add sample user
-            logger.LogInformation("Seeding sample user.");
-            var userEmail = "user@codehub.com";
-            if (await userManager.FindByEmailAsync(userEmail) == null)
-            {
-                var user = new Users
-                {
-                    FullName = "Sample User",
-                    UserName = userEmail,
-                    NormalizedUserName = userEmail.ToUpper(),
-                    Email = userEmail,
-                    NormalizedEmail = userEmail.ToUpper(),
-                    EmailConfirmed = true,
-                    SecurityStamp = Guid.NewGuid().ToString()
-                };
+            //logger.LogInformation("Seeding sample user.");
+            //var userEmail = "user@codehub.com";
+            //if (await userManager.FindByEmailAsync(userEmail) == null)
+            //{
+            //    var user = new Users
+            //    {
+            //        FullName = "Sample User",
+            //        UserName = userEmail,
+            //        NormalizedUserName = userEmail.ToUpper(),
+            //        Email = userEmail,
+            //        NormalizedEmail = userEmail.ToUpper(),
+            //        EmailConfirmed = true,
+            //        SecurityStamp = Guid.NewGuid().ToString()
+            //    };
 
-                var result = await userManager.CreateAsync(user, "User@123");
-                if (result.Succeeded)
-                {
-                    logger.LogInformation("Assigning User role to the sample user.");
-                    await userManager.AddToRoleAsync(user, "User");
-                }
-                else
-                {
-                    logger.LogError("Failed to create sample user: {Errors}", string.Join(", ", result.Errors.Select(e => e.Description)));
-                }
-            }
+            //    var result = await userManager.CreateAsync(user, "User@123");
+            //    if (result.Succeeded)
+            //    {
+            //        logger.LogInformation("Assigning User role to the sample user.");
+            //        await userManager.AddToRoleAsync(user, "User");
+            //    }
+            //    else
+            //    {
+            //        logger.LogError("Failed to create sample user: {Errors}", string.Join(", ", result.Errors.Select(e => e.Description)));
+            //    }
+            //}
 
             // Add sample exam data
             if (!context.Exams.Any())

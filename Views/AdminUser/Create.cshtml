@@ -13,7 +13,7 @@
                     <small class="text-muted">Manually create a new user account</small>
                 </div>
                 <div class="card-body">
-                    <form asp-action="CreateUser" method="post">
+                    <form asp-action="Create" method="post">
                         <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
 
                         <div class="mb-3">
@@ -60,7 +60,7 @@
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <a href="@Url.Action("Users", "Admin")" class="btn btn-secondary">
+                            <a href="@Url.Action("GetAll", "AdminUser")" class="btn btn-secondary">
                                 <i class="fas fa-arrow-left"></i> Back to Users
                             </a>
                             <button type="submit" class="btn btn-primary">

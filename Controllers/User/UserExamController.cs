@@ -6,13 +6,13 @@ using OnlineExam.Data;
 using OnlineExam.Models;
 using OnlineExam.ViewModels;
 
-namespace OnlineExam.Controllers;
+namespace OnlineExam.Controllers.User;
 
 
 [Authorize]
-public class ExamController(AppDbContext context, UserManager<Users> userManager) : Controller
+public class UserExamController(AppDbContext context, UserManager<Users> userManager) : Controller
 {
-    // GET: Exam/AvailableExams
+    // GET: UserExam/AvailableExams
     public async Task<IActionResult> AvailableExams()
     {
         var user = await userManager.GetUserAsync(User);
@@ -33,7 +33,6 @@ public class ExamController(AppDbContext context, UserManager<Users> userManager
 
         return View(availableExams);
     }
-
 
     // GET: Exam/TakeExam/5
     public async Task<IActionResult> TakeExam(int? id)

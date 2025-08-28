@@ -14,16 +14,13 @@ public class HomeController(ILogger<HomeController> logger) : Controller
             if (User.IsInRole("Admin"))
                 return RedirectToAction("Index", "Admin");
             else
-                return RedirectToAction("AvailableExams", "Exam");
+                return RedirectToAction("AvailableExams", "UserExam");
         }
         return View();
     }
 
     [Authorize]
     public IActionResult Privacy() => View();
-
-    [Authorize(Roles = "Admin")]
-    public IActionResult Admin() => RedirectToAction("Index", "Admin");
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error() =>

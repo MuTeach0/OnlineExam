@@ -233,3 +233,4 @@ D:\OnlineExam\obj\Debug\net9.0\OnlineExam.genruntimeconfig.cache
 D:\OnlineExam\obj\Debug\net9.0\ref\OnlineExam.dll
 D:\OnlineExam\obj\Debug\net9.0\compressed\188jrz3l83-2lmz3det7l.gz
 D:\OnlineExam\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+D:\OnlineExam\obj\Debug\net9.0\OnlineExam.sourcelink.json

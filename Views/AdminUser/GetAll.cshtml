@@ -9,7 +9,7 @@
         <div class="col-12">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h1>Manage Users</h1>
-                <a href="@Url.Action("CreateUser", "Admin")" class="btn btn-primary">
+                <a href="@Url.Action("Create", "AdminUser")" class="btn btn-primary">
                     <i class="fas fa-plus"></i> Add New User
                 </a>
             </div>
@@ -58,7 +58,7 @@
                                                        onclick="alert('User management features can be extended here')">
                                                         <i class="bi bi-card-checklist"></i>  <!-- manage questions -->
                                                     </a> *@
-                                                    <a href="@Url.Action("EditUser", "Admin", new { id = user.Id })"
+                                                    <a href="@Url.Action("Edit", "AdminUser", new { id = user.Id })"
                                                        class="btn btn-sm btn-outline-info">
                                                         <i class="bi bi-pencil-square"></i> Edit
                                                     </a>

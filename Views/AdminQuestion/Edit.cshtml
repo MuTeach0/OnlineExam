@@ -1,6 +1,6 @@
 ﻿@model OnlineExam.ViewModels.QuestionViewModel
 @{
-    ViewData["Title"] = "Add Question";
+    ViewData["Title"] = "Edit Question";
     Layout = "_Layout";
 }
 
@@ -9,10 +9,12 @@
         <div class="col-md-8">
             <div class="card shadow-sm">
                 <div class="card-header">
-                    <h3 class="mb-0">Add New Question</h3>
+                    <h3 class="mb-0">Edit Question</h3>
+                    @* <small class="text-muted">Exam: @Model.ExamTitle</small> *@
                 </div>
                 <div class="card-body">
-                    <form asp-action="CreateQuestion" method="post">
+                    <form asp-action="Edit" method="post">
+                        <input type="hidden" asp-for="Id" />
                         <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
 
                         <div class="mb-3">
@@ -77,11 +79,11 @@
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <a href="@Url.Action("Questions", "Admin")" class="btn btn-secondary">
+                            <a href="@Url.Action("GetAll", "AdminQuestion")" class="btn btn-secondary">
                                 <i class="fas fa-arrow-left"></i> Back to Questions
                             </a>
                             <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-save"></i> Add Question
+                                <i class="fas fa-save"></i> Update Question
                             </button>
                         </div>
                     </form>

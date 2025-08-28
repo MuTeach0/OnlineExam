@@ -1,6 +1,6 @@
 ﻿@model OnlineExam.ViewModels.ExamViewModel
 @{
-    ViewData["Title"] = "Edit Exam";
+    ViewData["Title"] = "Create Exam";
     Layout = "_Layout";
 }
 
@@ -9,11 +9,10 @@
         <div class="col-md-8">
             <div class="card shadow-sm">
                 <div class="card-header">
-                    <h3 class="mb-0">Edit Exam: @Model.Title</h3>
+                    <h3 class="mb-0">Create New Exam</h3>
                 </div>
                 <div class="card-body">
-                    <form asp-action="EditExam" method="post">
-                        <input type="hidden" asp-for="Id" />
+                    <form asp-action="Create" method="post">
                         <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
 
                         <div class="mb-3">
@@ -48,11 +47,11 @@
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <a href="@Url.Action("Exams", "Admin")" class="btn btn-secondary">
+                            <a href="@Url.Action("GetAll", "AdminExam")" class="btn btn-secondary">
                                 <i class="fas fa-arrow-left"></i> Back to Exams
                             </a>
                             <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-save"></i> Update Exam
+                                <i class="fas fa-save"></i> Create Exam
                             </button>
                         </div>
                     </form>

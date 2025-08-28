@@ -1,71 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\OnlineExam\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{E05D45D3-83D9-4ABE-86E0-42C8DBC66166}|OnlineExam.csproj|d:\\onlineexam\\controllers\\examcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E05D45D3-83D9-4ABE-86E0-42C8DBC66166}|OnlineExam.csproj|solutionrelative:controllers\\examcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E05D45D3-83D9-4ABE-86E0-42C8DBC66166}|OnlineExam.csproj|d:\\onlineexam\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E05D45D3-83D9-4ABE-86E0-42C8DBC66166}|OnlineExam.csproj|solutionrelative:controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E05D45D3-83D9-4ABE-86E0-42C8DBC66166}|OnlineExam.csproj|d:\\onlineexam\\views\\admin\\createuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E05D45D3-83D9-4ABE-86E0-42C8DBC66166}|OnlineExam.csproj|solutionrelative:views\\admin\\createuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ExamController.cs",
-              "DocumentMoniker": "D:\\OnlineExam\\Controllers\\ExamController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ExamController.cs",
-              "ToolTip": "D:\\OnlineExam\\Controllers\\ExamController.cs",
-              "RelativeToolTip": "Controllers\\ExamController.cs",
-              "ViewState": "AgIAAIQAAAAAAAAAAAA+wI4AAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-27T00:53:12.508Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CreateUser.cshtml",
-              "DocumentMoniker": "D:\\OnlineExam\\Views\\Admin\\CreateUser.cshtml",
-              "RelativeDocumentMoniker": "Views\\Admin\\CreateUser.cshtml",
-              "ToolTip": "D:\\OnlineExam\\Views\\Admin\\CreateUser.cshtml",
-              "RelativeToolTip": "Views\\Admin\\CreateUser.cshtml",
-              "ViewState": "AgIAADMAAAAAAAAAAAAmwFIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-27T00:42:52.453Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "D:\\OnlineExam\\Controllers\\AdminController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AdminController.cs",
-              "ToolTip": "D:\\OnlineExam\\Controllers\\AdminController.cs",
-              "RelativeToolTip": "Controllers\\AdminController.cs",
-              "ViewState": "AgIAAAgBAAAAAAAAAAAAAD4BAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-27T00:42:15.877Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
